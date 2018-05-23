@@ -18,7 +18,7 @@ class EmojiTableViewController: UITableViewController {
     ]
     var animalsNature: [Emoji] = [
         Emoji("🐢", "Turtle", "A cute turtle.", "Something slow"),
-        Emoji("🐘", "Elephant", "A cute turtle.", "good memory"),
+        Emoji("🐘", "Elephant", "A grey elephant.", "good memory"),
     ]
     var foodDrink: [Emoji] = [
         Emoji("🍝", "Spaghetti", "A plate of spaghetti.", "spaghetti")
@@ -112,11 +112,10 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
         
         let emoji = emojis[indexPath.section][indexPath.row]
-        cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
-        cell.detailTextLabel?.text = emoji.description
+        cell.update(with: emoji)
         cell.showsReorderControl = true
 
         return cell
