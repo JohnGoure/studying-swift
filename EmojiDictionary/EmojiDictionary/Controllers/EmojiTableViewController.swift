@@ -120,10 +120,6 @@ class EmojiTableViewController: UITableViewController {
 
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(emojis[indexPath.section][indexPath.row].symbol) \(indexPath)")
-    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -136,17 +132,23 @@ class EmojiTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .none
+        return .delete
     }
 
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let moveEmoji = emojis.remove(at: fromIndexPath.row)
-        emojis.insert(moveEmoji, at: to.row)
+        let moveEmoji = emojis[fromIndexPath.section].remove(at: fromIndexPath.row)
+        emojis[fromIndexPath.section].insert(moveEmoji, at: to.row)
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            emojis[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -155,15 +157,22 @@ class EmojiTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
+    func unwindToEmojiTableView(segue: UIStoryboardSegue) {
+        
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "EditEmoji" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let emoji = emojis[indexPath.section][indexPath.row]
+            let addEditEmojiTableViewController = segue.destination as! AddEditEmojiTableViewController
+            addEditEmojiTableViewController.emoji = emoji
+        }
     }
-    */
 
 }
