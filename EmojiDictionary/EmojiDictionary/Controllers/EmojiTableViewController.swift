@@ -120,6 +120,11 @@ class EmojiTableViewController: UITableViewController {
 
         return cell
     }
+    
+    @IBAction func refreshControlActivated(_ sender: UIRefreshControl) {
+        tableView.reloadData()
+        sender.endRefreshing()
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -157,7 +162,22 @@ class EmojiTableViewController: UITableViewController {
         return true
     }
     */
-    func unwindToEmojiTableView(segue: UIStoryboardSegue) {
+    
+    
+    @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveUnwind" else {return}
+        let sourceViewController = segue.source as! AddEditEmojiTableViewController
+        
+        if let emoji = sourceViewController.emoji {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                emojis[selectedIndexPath.section][selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: emojis[0].count, section: 0)
+                emojis[0].append(emoji)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
         
     }
     
