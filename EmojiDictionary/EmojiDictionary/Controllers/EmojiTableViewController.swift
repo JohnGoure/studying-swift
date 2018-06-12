@@ -45,14 +45,42 @@ class EmojiTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        if let loadedFiles = self.loadFromFile() {
+            emojis = loadedFiles
+        } else {
+            self.loadSampleEmojis()
+        }
+    }
+    
+    func saveToFile(emojis: [[Emoji]]) {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let archiveURL = documentDirectory.appendingPathComponent("emojis").appendingPathExtension("plist")
+        
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedNote = try? propertyListEncoder.encode(emojis)
+        try? encodedNote?.write(to: archiveURL, options: .noFileProtection)
+    }
+    
+    func loadFromFile() -> [[Emoji]]? {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let archiveURL = documentDirectory.appendingPathComponent("emojis").appendingPathExtension("plist")
+        
+        let propertyListDecoder = PropertyListDecoder()
+        if let retrievedEmojisData = try? Data(contentsOf: archiveURL),
+            let decodedNotes = try? propertyListDecoder.decode(Array<Array<Emoji>>.self, from: retrievedEmojisData) {
+            return decodedNotes
+        }
+        return nil
+    }
+    
+    func loadSampleEmojis() {
         self.emojis.append(self.smileysPeople)
         self.emojis.append(self.animalsNature)
         self.emojis.append(self.foodDrink)
         self.emojis.append(self.activity)
         self.emojis.append(self.symbols)
         self.emojis.append(self.flags)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +90,7 @@ class EmojiTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        saveToFile(emojis: emojis)
     }
 
     @IBAction func editButtonTapped(_ sender: Any) {
@@ -71,7 +100,7 @@ class EmojiTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return emojis.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,6 +174,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let moveEmoji = emojis[fromIndexPath.section].remove(at: fromIndexPath.row)
         emojis[fromIndexPath.section].insert(moveEmoji, at: to.row)
+        self.saveToFile(emojis: emojis)
         tableView.reloadData()
     }
     
@@ -152,6 +182,7 @@ class EmojiTableViewController: UITableViewController {
         if editingStyle == .delete {
             emojis[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.saveToFile(emojis: emojis)
         }
     }
 
@@ -172,10 +203,12 @@ class EmojiTableViewController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 emojis[selectedIndexPath.section][selectedIndexPath.row] = emoji
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                self.saveToFile(emojis: emojis)
             } else {
                 let newIndexPath = IndexPath(row: emojis[0].count, section: 0)
                 emojis[0].append(emoji)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                self.saveToFile(emojis: emojis)
             }
         }
         

@@ -8,16 +8,20 @@
 
 import Foundation
 
-class Emoji {
+class Emoji: Codable {
     let symbol: String
     let name: String
-    let description: String
+    let detailDescription: String
     let usage: String
     
     init(_ symbol: String, _ name: String, _ description: String, _ usage: String) {
         self.symbol = symbol
         self.name = name
-        self.description = description
+        self.detailDescription = description
         self.usage = usage
     }
+    
+    
+    
+    
 }

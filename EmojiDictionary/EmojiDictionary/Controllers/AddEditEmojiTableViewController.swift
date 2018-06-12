@@ -28,12 +28,13 @@ class AddEditEmojiTableViewController: UITableViewController {
         if let emoji = emoji {
             symbolTextField.text = emoji.symbol
             nameTextField.text = emoji.name
-            descriptionTextField.text = emoji.description
+            descriptionTextField.text = emoji.detailDescription
             usageTextField.text = emoji.usage
         }
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
         updateSaveButtonState()
+        self.navigationItem.hidesBackButton = true
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {

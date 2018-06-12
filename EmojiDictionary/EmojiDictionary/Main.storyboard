@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Emojis-->
         <scene sceneID="w0q-9f-JDq">
             <objects>
                 <tableViewController id="T1E-IX-OPS" customClass="EmojiTableViewController" customModule="EmojiDictionary" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                             <outlet property="delegate" destination="T1E-IX-OPS" id="dEu-6i-OQf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Gvq-Eh-upZ">
+                    <navigationItem key="navigationItem" title="Emojis" id="Gvq-Eh-upZ">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="9mQ-a6-UCT">
                             <connections>
                                 <action selector="editButtonTapped:" destination="T1E-IX-OPS" id="JId-Hx-hZT"/>
@@ -87,6 +87,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ro7-RY-ySd">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refreshControlActivated:" destination="T1E-IX-OPS" eventType="valueChanged" id="ZzA-zb-bzu"/>
