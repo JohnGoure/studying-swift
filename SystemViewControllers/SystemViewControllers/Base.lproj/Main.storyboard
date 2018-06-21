@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +14,81 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SystemViewControllers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Al-x5-6IK">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="behance" translatesAutoresizingMaskIntoConstraints="NO" id="CEi-0O-ePx">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="407.5"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qih-SN-2JO">
+                                        <rect key="frame" x="0.0" y="407.5" width="375" height="239.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GW-5x-zZD">
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="239.5"/>
+                                                <state key="normal" title="Share"/>
+                                                <connections>
+                                                    <action selector="shareButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YpM-It-Vsf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrn-Iq-InL">
+                                                <rect key="frame" x="94" y="0.0" width="93.5" height="239.5"/>
+                                                <state key="normal" title="Safari"/>
+                                                <connections>
+                                                    <action selector="safariButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8yR-wa-lYy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvC-za-Cmw">
+                                                <rect key="frame" x="187.5" y="0.0" width="94" height="239.5"/>
+                                                <state key="normal" title="Camera"/>
+                                                <connections>
+                                                    <action selector="cameraButoonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i0b-aS-BAb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PyZ-nT-rKB">
+                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="239.5"/>
+                                                <state key="normal" title="Email"/>
+                                                <connections>
+                                                    <action selector="emailButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPC-PI-aNY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="1GW-5x-zZD" firstAttribute="top" secondItem="Qih-SN-2JO" secondAttribute="top" id="0GX-Tu-jAM"/>
+                                            <constraint firstItem="WvC-za-Cmw" firstAttribute="width" secondItem="PyZ-nT-rKB" secondAttribute="width" id="Ane-eI-Np0"/>
+                                            <constraint firstItem="Vrn-Iq-InL" firstAttribute="width" secondItem="WvC-za-Cmw" secondAttribute="width" id="Ku5-pU-Awd"/>
+                                            <constraint firstItem="1GW-5x-zZD" firstAttribute="width" secondItem="Vrn-Iq-InL" secondAttribute="width" id="RNp-i5-pMy"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="CEi-0O-ePx" firstAttribute="height" secondItem="2Al-x5-6IK" secondAttribute="height" multiplier="0.63" id="ar7-CE-chB"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2Al-x5-6IK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="24B-6y-1Ms"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2Al-x5-6IK" secondAttribute="bottom" id="X47-aw-bWu"/>
+                            <constraint firstItem="2Al-x5-6IK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aTb-d0-9NF"/>
+                            <constraint firstAttribute="trailing" secondItem="2Al-x5-6IK" secondAttribute="trailing" id="h5p-7G-55l"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="CEi-0O-ePx" id="Xyf-aE-peQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="behance" width="960" height="717"/>
+    </resources>
 </document>
