@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import MessageUI
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     
@@ -87,6 +87,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func messageButtonTouched(_ sender: Any) {
+        guard MFMessageComposeViewController.canSendText() else {print("can't send message")
+            return}
+        
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+        
+        composeVC.recipients = ["3612129496"]
+        composeVC.body = "Hello from John"
+        
+        present(composeVC, animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

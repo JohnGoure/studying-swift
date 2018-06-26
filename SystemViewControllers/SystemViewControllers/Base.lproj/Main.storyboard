@@ -29,37 +29,45 @@
                                         <rect key="frame" x="0.0" y="407.5" width="375" height="239.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GW-5x-zZD">
-                                                <rect key="frame" x="0.0" y="0.0" width="94" height="239.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="239.5"/>
                                                 <state key="normal" title="Share"/>
                                                 <connections>
                                                     <action selector="shareButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YpM-It-Vsf"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrn-Iq-InL">
-                                                <rect key="frame" x="94" y="0.0" width="93.5" height="239.5"/>
+                                                <rect key="frame" x="75" y="0.0" width="75" height="239.5"/>
                                                 <state key="normal" title="Safari"/>
                                                 <connections>
                                                     <action selector="safariButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8yR-wa-lYy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvC-za-Cmw">
-                                                <rect key="frame" x="187.5" y="0.0" width="94" height="239.5"/>
+                                                <rect key="frame" x="150" y="0.0" width="74.5" height="239.5"/>
                                                 <state key="normal" title="Camera"/>
                                                 <connections>
                                                     <action selector="cameraButoonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i0b-aS-BAb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PyZ-nT-rKB">
-                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="239.5"/>
+                                                <rect key="frame" x="224.5" y="0.0" width="75" height="239.5"/>
                                                 <state key="normal" title="Email"/>
                                                 <connections>
                                                     <action selector="emailButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPC-PI-aNY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yK-3l-jFE">
+                                                <rect key="frame" x="299.5" y="0.0" width="75.5" height="239.5"/>
+                                                <state key="normal" title="Message"/>
+                                                <connections>
+                                                    <action selector="messageButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="69s-np-NMB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="1GW-5x-zZD" firstAttribute="top" secondItem="Qih-SN-2JO" secondAttribute="top" id="0GX-Tu-jAM"/>
                                             <constraint firstItem="WvC-za-Cmw" firstAttribute="width" secondItem="PyZ-nT-rKB" secondAttribute="width" id="Ane-eI-Np0"/>
+                                            <constraint firstItem="5yK-3l-jFE" firstAttribute="width" secondItem="PyZ-nT-rKB" secondAttribute="width" id="GET-zf-nW1"/>
                                             <constraint firstItem="Vrn-Iq-InL" firstAttribute="width" secondItem="WvC-za-Cmw" secondAttribute="width" id="Ku5-pU-Awd"/>
                                             <constraint firstItem="1GW-5x-zZD" firstAttribute="width" secondItem="Vrn-Iq-InL" secondAttribute="width" id="RNp-i5-pMy"/>
                                         </constraints>
